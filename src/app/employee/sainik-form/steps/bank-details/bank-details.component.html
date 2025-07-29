@@ -1,0 +1,62 @@
+<form [formGroup]="formGroup" class="bank-details-form">
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Account Number</mat-label>
+      <input matInput formControlName="account_number" maxlength="16">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>PAN Number</mat-label>
+      <input matInput formControlName="pan_number" maxlength="10">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Bank Name</mat-label>
+      <input matInput formControlName="bank_name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>IFSC Code</mat-label>
+      <input matInput formControlName="ifsc_code" maxlength="11">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Account Type</mat-label>
+      <mat-select formControlName="account_type">
+        <mat-option *ngFor="let type of accountTypes" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>PPO Number</mat-label>
+      <input matInput formControlName="ppo_number" maxlength="15">
+    </mat-form-field>
+  </div>
+   <!-- Form Actions -->
+  <div class="form-actions">
+    <button mat-raised-button color="primary" (click)="addBankRecord()" [disabled]="formGroup.invalid">
+      + Add Bank Record
+    </button>
+    <button mat-button color="warn" (click)="clearForm()" type="button">
+      Clear
+    </button>
+  </div>
+
+  <!-- Display Added Records -->
+  <div *ngIf="bankRecords.length > 0">
+    <h3>Added Bank Records:</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let record of bankRecords; let i = index">
+        {{ i + 1 }}. {{ record.bank_name }} - {{ record.account_number }}
+
+        <button mat-icon-button color="warn" (click)="deleteBankRecord(i)" matTooltip="Delete">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</form>

@@ -1,0 +1,16 @@
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  /* Full viewport height */
+}
+
+mat-sidenav-content {
+  display: block; /* ⚠️ 'flex' might interfere with natural flow */
+  overflow-y: auto;  /* vertical scrolling */
+  flex-grow: 1;
+  padding: 1rem;
+  min-height: 0; /* Required for nested scrolling in flexbox */
+}
+
+

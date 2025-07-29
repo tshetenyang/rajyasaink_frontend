@@ -1,0 +1,28 @@
+<form [formGroup]="formGroup">
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="first_name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="last_name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+  <mat-label>Relation</mat-label>
+  <mat-select formControlName="relation">
+    <mat-option *ngFor="let rel of relations" [value]="rel">{{ rel }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="add()">Add Dependent</button>
+</form>
+
+<div *ngFor="let dep of dependentRecords; let i = index">
+  <p>{{ dep.first_name }} {{ dep.last_name }} ({{ dep.relation }}) 
+     <button mat-icon-button color="warn" (click)="deleteRecord(i)">
+       <mat-icon>delete</mat-icon>
+     </button>
+  </p>
+</div>

@@ -1,0 +1,72 @@
+<mat-horizontal-stepper [linear]="true">
+   <mat-step [stepControl]="personalForm" label="Personal Details">
+    <app-personal-details [formGroup]="personalForm"></app-personal-details>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+
+<mat-step label="Service Details">
+  <h2>Service Details</h2>
+  <app-service-details
+    [formGroup]="serviceForm"
+    [serviceRecords]="serviceRecords"
+    (addRecord)="addServiceRecord()"
+  ></app-service-details>
+  <div class="stepper-nav">
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+    <!--    <button mat-button matStepperNext [disabled]="serviceRecords.length === 0">Next</button>
+-->
+  </div>
+</mat-step>
+<mat-step label="Bank Details">
+  <app-bank-details [formGroup]="bankForm" [bankRecords]="bankRecords"
+    (addRecord)="addBankRecord()"></app-bank-details>
+  <div class="step-actions">
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext >Next</button>
+    <!--    <button mat-button matStepperNext [disabled]="bankRecords.length === 0">Next</button>
+-->
+  </div>
+</mat-step>
+
+<mat-step label="Dependent Details">
+  <app-dependent-details
+    [formGroup]="dependentForm"
+    [dependentRecords]="dependentRecords"
+    (addRecord)="addDependentRecord()">
+  </app-dependent-details>
+  <div class="step-actions">
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext >Next</button>
+    <!--    <button mat-button matStepperNext [disabled]="dependentRecords.length === 0">Next</button>
+-->
+  </div>
+</mat-step>
+ <mat-step label="Additional Details">
+    <app-additional-details
+      [formGroup]="additionalForm"
+    
+>
+    </app-additional-details>
+    <div class="step-actions">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+      <!--      <button mat-button matStepperNext [disabled]="additionalForm.invalid">Next</button>
+-->
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <h2>Review Your Details</h2>
+   <app-review-summary
+    [personal]="personalForm.value"
+    [serviceRecords]="serviceRecords"
+    [bankRecords]="bankRecords"
+    [dependentRecords]="dependentRecords"
+    [additionalDetails]="additionalForm.value"
+
+    >
+  </app-review-summary>
+    <button mat-button matStepperPrevious>Back</button>
+<button mat-raised-button color="primary" (click)="submitForm()">Submit</button>  </mat-step>
+</mat-horizontal-stepper>

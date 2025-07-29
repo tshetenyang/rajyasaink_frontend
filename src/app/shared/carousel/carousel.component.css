@@ -1,0 +1,44 @@
+
+
+.full-height {
+  width: 100%;
+  height: 100vh;
+  /* Full viewport height */
+  object-fit: cover;
+  /* Cover the container while maintaining aspect ratio */
+}
+
+
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  .hiddenMast {
+    position: relative;
+    z-index: 0;
+    display: none;
+  }
+}
+
+.moving-text {
+  text-align: center;
+  position: relative;
+  animation: moveText 25s linear infinite;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.moving-text-container {
+  width: 30px;
+  /* Decrease the width to your desired value */
+  overflow: hidden;
+  /* Hide the text that overflows the container */
+}

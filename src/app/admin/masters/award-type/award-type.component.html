@@ -1,0 +1,40 @@
+<div class="awardType-form-container">
+    <h2>Add awardType</h2>
+    <form [formGroup]="awardTypeForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>awardType Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter awardType name" />
+        <mat-error *ngIf="awardTypeForm.get('name')?.hasError('required')">
+          awardType Name is required
+        </mat-error>
+        <mat-error *ngIf="awardTypeForm.get('name')?.hasError('minlength')">
+          Minimum 3 characters required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="awardTypeForm.invalid">
+        Add awardType
+      </button>
+    </form>
+  </div>
+  
+  <!-- Table to display the awardTypes -->
+  <div class="awardType-table-container" *ngIf="awardTypes.length > 0">
+    <h3>awardTypes List</h3>
+    <table mat-table [dataSource]="awardTypes">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let awardType"> {{ awardType.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let awardType"> {{ awardType.name }} </td>
+      </ng-container>
+  
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

@@ -1,0 +1,84 @@
+<mat-sidenav-container autosize="true">
+  <mat-sidenav
+    #sidenav="matSidenav"
+    class="mat-elevation-z8"
+    [fixedInViewport]="true"
+    fixedTopGap="56"
+    [(opened)]="toggleSidebar"
+    mode="side"
+  >
+    <h2><mat-icon>dashboard</mat-icon> Manager Dashboard</h2>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" [routerLink]="['/manager']">
+      <mat-icon>home</mat-icon>
+      <span class="menucolor">Dashboard</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>person</mat-icon>
+      <span class="menucolor">Option 1</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>person</mat-icon>
+      <span class="menucolor">Option 2</span>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>info</mat-icon>
+      <span class="menucolor"> Option 3 </span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>info</mat-icon>
+      <span class="menucolor">Option 4</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>info</mat-icon>
+      <span class="menucolor">Option 5</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>info</mat-icon>
+      <span class="menucolor">Option 5</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button
+      mat-button
+      class="menu-button"
+      [routerLink]="['samplepage']"
+      routerLinkActive="router-link-active"
+    >
+      <mat-icon>help</mat-icon>
+      <span class="menucolor">Sample Page</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>info</mat-icon>
+      <span class="menucolor">Option 8</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>help</mat-icon>
+      <span class="menucolor">Option8</span>
+    </button>
+  </mat-sidenav>
+
+  <!-- main-layout.component.html or similar -->
+  <mat-sidenav-content>
+    <div class="main-container">
+      <mat-toolbar>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a menu icon"
+          (click)="toggleSidebar = !toggleSidebar"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <app-breadcrumb></app-breadcrumb>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,49 @@
+<div class="commisiontype-form-container">
+    <h2>Add commisiontype</h2>
+    <form [formGroup]="commisiontypeForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>commisiontype Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter commisiontype name" />
+        <mat-error *ngIf="commisiontypeForm.get('name')?.hasError('required')">
+          commisiontype Name is required
+        </mat-error>
+        <mat-error *ngIf="commisiontypeForm.get('name')?.hasError('minlength')">
+          Minimum 3 characters required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="commisiontypeForm.invalid">
+        Add commisiontype
+      </button>
+    </form>
+  </div>
+  
+  <!-- Table to display the commisiontypes -->
+  <div class="commisiontype-table-container" *ngIf="commisiontypes.length > 0">
+    <h3>commisiontypes List</h3>
+    <table mat-table [dataSource]="commisiontypes">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let commisiontype"> {{ commisiontype.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let commisiontype"> {{ commisiontype.name }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="is_active">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let commisiontype">
+          <mat-slide-toggle 
+            [checked]="commisiontype.is_active" 
+            (change)="onToggleStatus(commisiontype, $event)">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

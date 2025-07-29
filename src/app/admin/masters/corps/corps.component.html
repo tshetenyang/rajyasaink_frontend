@@ -1,0 +1,49 @@
+<div class="corps-form-container">
+    <h2>Add Corps</h2>
+    <form [formGroup]="corpsForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>corps Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter corps name" />
+        <mat-error *ngIf="corpsForm.get('name')?.hasError('required')">
+          corps Name is required
+        </mat-error>
+        <mat-error *ngIf="corpsForm.get('name')?.hasError('minlength')">
+          Minimum 3 characters required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="corpsForm.invalid">
+        Add corps
+      </button>
+    </form>
+  </div>
+  
+  <!-- Table to display the corps -->
+  <div class="corps-table-container" *ngIf="corps.length > 0">
+    <h3>corps List</h3>
+    <table mat-table [dataSource]="corps">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let corps"> {{ corps.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let corps"> {{ corps.name }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="is_active">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let corps">
+          <mat-slide-toggle 
+            [checked]="corps.is_active" 
+            (change)="onToggleStatus(corps, $event)">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

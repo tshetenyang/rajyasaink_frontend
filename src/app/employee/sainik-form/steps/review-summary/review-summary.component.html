@@ -1,0 +1,179 @@
+<div class="card-wrapper">
+  <!-- Personal Details Card -->
+  <mat-card class="review-card">
+    <mat-card-header>
+      <mat-card-title>Personal Details Review</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-list dense>
+        <mat-list-item>
+          <span class="label">ID IC:</span>
+          <span class="value">{{ personal.id_ic }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span class="label">Full Name:</span>
+          <span class="value">
+            {{ personal.first_name }}
+            {{ personal.middle_name || '' }}
+            {{ personal.last_name }}
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <span class="label">Date of Birth:</span>
+          <span class="value">{{ personal.date_of_birth | date:'mediumDate' }}</span>
+        </mat-list-item>
+
+        <ng-container *ngIf="personal.district">
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span class="label">District:</span>
+            <span class="value">{{ personal.district }}</span>
+          </mat-list-item>
+        </ng-container>
+
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="label">Address:</span>
+          <span class="value">{{ personal.address || 'Not provided' }}</span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="label">PIN Code:</span>
+          <span class="value">{{ personal.pin_code || 'Not provided' }}</span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="label">Phone Number:</span>
+          <span class="value">{{ personal.phone_number || 'Not provided' }}</span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="label">Email:</span>
+          <span class="value">{{ personal.email || 'Not provided' }}</span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="label">Aadhar Number:</span>
+          <span class="value">{{ personal.aadhar_number || 'Not provided' }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Service Records Card -->
+ <mat-card class="review-card mt-4">
+  <mat-card-header>
+    <mat-card-title>Service Record(s) Review</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="serviceRecords.length > 0; else noRecords">
+    <mat-list dense>
+      <ng-container *ngFor="let record of serviceRecords; let i = index">
+        <mat-list-item class="service-record-item">
+          <div class="service-record-content">
+            <span><strong>#{{ i + 1 }}</strong></span>
+            <span><strong>Corps:</strong> {{ record.corps }}</span>
+            <span><strong>Commission Type:</strong> {{ record.commission }}</span>
+            <span><strong>Description:</strong> {{ record.description || 'Not provided' }}</span>
+            <span><strong>Start Date:</strong> {{ record.start_date | date:'mediumDate' }}</span>
+            <span><strong>End Date:</strong> {{ record.end_date | date:'mediumDate' }}</span>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
+
+  <ng-template #noRecords>
+    <p style="padding: 1rem;">No service records added.</p>
+  </ng-template>
+</mat-card>
+
+<!-- Bank Records Card -->
+ <mat-card class="review-card mt-4">
+  <mat-card-header>
+    <mat-card-title>Bank Record(s) Review</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="bankRecords.length > 0; else noBankRecords">
+    <mat-list dense>
+      <ng-container *ngFor="let record of bankRecords; let i = index">
+        <mat-list-item class="bank-record-item">
+          <div class="bank-record-content">
+
+            <span><strong>#{{ i + 1 }}</strong></span>
+            <span><strong>Bank Name:</strong> {{ record.bank_name }}</span>
+            <span><strong>Account Number Type:</strong> {{ record.account_number|| 'Not provided'  }}</span>
+            <span><strong>Account Type:</strong> {{ record.account_type || 'Not provided' }}</span>
+            <span><strong>IFSC Code:</strong> {{ record.ifsc_code || 'Not provided' }}</span>
+            <span><strong>PAN Number:</strong> {{ record.pan_number || 'Not provided' }}</span>
+            <span><strong>PPO Number:</strong> {{ record.ppo_number || 'Not provided' }}</span>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
+
+  <ng-template #noBankRecords>
+    <p style="padding: 1rem;">No Bank records added.</p>
+  </ng-template>
+</mat-card>
+
+<!-- Dependent Records Card -->
+<mat-card class="review-card mt-4">
+  <mat-card-header>
+    <mat-card-title>Dependent Record(s) Review</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="dependentRecords.length > 0; else noDependents">
+    <mat-list dense>
+      <ng-container *ngFor="let record of dependentRecords; let i = index">
+        <mat-list-item class="dependent-record-item">
+          <div class="dependent-record-content">
+            <span><strong>#{{ i + 1 }}</strong></span>
+            <span><strong>First Name:</strong> {{ record.first_name }}</span>
+            <span><strong>Last Name:</strong> {{ record.last_name }}</span>
+            <span><strong>Relation:</strong> {{ record.relation }}</span>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card-content>
+
+  <ng-template #noDependents>
+    <p style="padding: 1rem;">No dependent records added.</p>
+  </ng-template>
+</mat-card>
+<mat-card class="review-card mt-4">
+  <mat-card-header>
+    <mat-card-title>Additional Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list dense>
+      <mat-list-item><strong>Canteen Smart Card:</strong> {{ additionalDetails.canteen_smart_card ? 'Yes' : 'No' }}</mat-list-item>
+      <mat-list-item><strong>COI:</strong> {{ additionalDetails.coi ? 'Yes' : 'No' }}</mat-list-item>
+      <mat-list-item><strong>Resident Certificate:</strong> {{ additionalDetails.resident_certificate ? 'Yes' : 'No' }}</mat-list-item>
+      <mat-list-item><strong>ECHS:</strong> {{ additionalDetails.echs ? 'Yes' : 'No' }}</mat-list-item>
+      <mat-list-item><strong>ESM No:</strong> {{ additionalDetails.esm || 'Not provided' }}</mat-list-item>
+      <mat-list-item><strong>Issue Date:</strong> {{ additionalDetails.esm_issue_date | date:'mediumDate' || 'Not provided' }}</mat-list-item>
+      <mat-list-item><strong>Place of Issue:</strong> {{ additionalDetails.esm_place_of_issue || 'Not provided' }}</mat-list-item>
+      <mat-list-item><strong>Highest Qualification:</strong> {{ additionalDetails.highest_qualification || 'Not provided' }}</mat-list-item>
+      <mat-list-item><strong>Education Details:</strong> {{ additionalDetails.education_details || 'Not provided' }}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+
+
+</div>

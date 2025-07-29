@@ -1,0 +1,49 @@
+<div class="district-form-container">
+    <h2>Add District</h2>
+    <form [formGroup]="districtForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>District Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter district name" />
+        <mat-error *ngIf="districtForm.get('name')?.hasError('required')">
+          District Name is required
+        </mat-error>
+        <mat-error *ngIf="districtForm.get('name')?.hasError('minlength')">
+          Minimum 3 characters required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="districtForm.invalid">
+        Add District
+      </button>
+    </form>
+  </div>
+  
+  <!-- Table to display the districts -->
+  <div class="district-table-container" *ngIf="districts.length > 0">
+    <h3>Districts List</h3>
+    <table mat-table [dataSource]="districts">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let district"> {{ district.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let district"> {{ district.name }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="is_active">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let district">
+          <mat-slide-toggle 
+            [checked]="district.is_active" 
+            (change)="onToggleStatus(district, $event)">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

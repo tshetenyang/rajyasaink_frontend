@@ -1,0 +1,77 @@
+<form [formGroup]="formGroup" class="additional-form-section">
+
+  <h2 class="mat-title">Additional Details</h2>
+
+  <!-- Boolean Dropdowns in a Single Row -->
+  <div fxLayout="row" fxLayoutGap="16px" fxLayout.xs="column">
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>Canteen Smart Card</mat-label>
+      <mat-select formControlName="canteen_smart_card">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>COI</mat-label>
+      <mat-select formControlName="coi">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>Resident Certificate</mat-label>
+      <mat-select formControlName="resident_certificate">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>ECHS</mat-label>
+      <mat-select formControlName="echs">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- ESM Row: Number + Issue Date + Place of Issue -->
+  <div fxLayout="row" fxLayoutGap="16px" fxLayout.xs="column">
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>ESM Number</mat-label>
+      <input matInput formControlName="esm" placeholder="Enter ESM Number">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>ESM Issue Date</mat-label>
+      <input matInput [matDatepicker]="esmDate" formControlName="esm_issue_date" placeholder="Choose date">
+      <mat-datepicker-toggle matSuffix [for]="esmDate"></mat-datepicker-toggle>
+      <mat-datepicker #esmDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>Place of Issue</mat-label>
+      <mat-select formControlName="esm_place_of_issue">
+        <mat-option *ngFor="let place of esmIssuePlaces" [value]="place.id">{{ place.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Qualification + Education Details in a Single Row -->
+  <div fxLayout="row" fxLayoutGap="16px" fxLayout.xs="column">
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>Highest Qualification</mat-label>
+      <mat-select formControlName="highest_qualification">
+        <mat-option *ngFor="let qual of qualificationList" [value]="qual.id">{{ qual.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="flex">
+      <mat-label>Education Details</mat-label>
+      <textarea matInput formControlName="education_details" rows="3" placeholder="Additional education details..."></textarea>
+    </mat-form-field>
+  </div>
+
+</form>

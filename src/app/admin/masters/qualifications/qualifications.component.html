@@ -1,0 +1,49 @@
+<div class="qualification-form-container">
+    <h2>Add qualification</h2>
+    <form [formGroup]="qualificationForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>qualification Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter qualification name" />
+        <mat-error *ngIf="qualificationForm.get('name')?.hasError('required')">
+          qualification Name is required
+        </mat-error>
+        <mat-error *ngIf="qualificationForm.get('name')?.hasError('minlength')">
+          Minimum 3 characters required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="qualificationForm.invalid">
+        Add qualification
+      </button>
+    </form>
+  </div>
+  
+  <!-- Table to display the qualifications -->
+  <div class="qualification-table-container" *ngIf="qualifications.length > 0">
+    <h3>qualifications List</h3>
+    <table mat-table [dataSource]="qualifications">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let qualification"> {{ qualification.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let qualification"> {{ qualification.name }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="is_active">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let qualification">
+          <mat-slide-toggle 
+            [checked]="qualification.is_active" 
+            (change)="onToggleStatus(qualification, $event)">
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

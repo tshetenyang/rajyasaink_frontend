@@ -1,0 +1,66 @@
+/*  sidemenu style*/
+
+
+mat-sidenav {
+  
+  background: rgb(175, 201, 175);
+  background-size: cover;
+  margin: 16px;
+  width: 300px;
+  border-right: none;
+  color: black;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: left;
+  overflow: auto;
+  max-height:80vh !important;
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+mat-divider {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: #5D5C61;
+}
+
+/*  sidemenu style*/
+
+
+
+/* Main container to ensure full viewport usage */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 64px;
+  /* Full viewport height */
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* Allows content to grow and take available space */
+  overflow: auto;
+
+  /* Prevents overflow */
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

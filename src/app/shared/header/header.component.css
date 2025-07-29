@@ -1,0 +1,136 @@
+.header-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Ensure it stays on top of other elements */
+  background-color: #bce49b;
+  /* Match the background color of your header */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.mat-icon-button {
+  color: white;
+}
+
+.toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-link {
+  margin-right: 15px;
+  font-size: 1rem;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid white;
+}
+
+.btn.btn-danger {
+  background-color: #d32f2f;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.btn-danger:hover {
+  background-color: #c62828;
+}
+
+.mobile-hidden {
+  display: none;
+}
+
+.footer-img {
+  max-height: 30px;
+  height: auto;
+}
+@media (min-width: 768px) {
+  .mobile-hidden {
+    display: inline;
+  }
+}
+/*mODAL BODY*/
+
+/* Main container to ensure full viewport usage */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* Full viewport height */
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* Allows content to grow and take available space */
+  overflow: auto;
+  /* Prevents overflow */
+}
+
+/* Account Model Position */
+
+/* Center the header content */
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(218, 228, 233);
+}
+
+/* Center the body content */
+.modal-body.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+/* Position buttons at both ends in the footer */
+.modal-footer.justify-content-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Position the modal at the top-left corner of the viewport */
+.modal-dialog-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
+.modal-dialog-custom .modal-content {
+  border-radius: 0;
+}
+
+
+
+.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+
+

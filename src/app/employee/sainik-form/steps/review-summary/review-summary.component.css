@@ -1,0 +1,43 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-card {
+  padding: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.value {
+  white-space: pre-wrap;
+}
+
+.service-record {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.bank-record {
+  gap: 4px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+.dependent-record {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  overflow-wrap: break-word;
+}

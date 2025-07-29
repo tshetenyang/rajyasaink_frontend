@@ -1,0 +1,43 @@
+<mat-sidenav-container autosize="true">
+  <mat-sidenav
+    #sidenav="matSidenav"
+    class="mat-elevation-z8"
+    [fixedInViewport]="true"
+    fixedTopGap="56"
+    [(opened)]="toggleSidebar"
+    mode="side"
+  >
+    <h2><mat-icon>dashboard</mat-icon> Employee Dashboard</h2>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" [routerLink]="['/employee']">
+      <mat-icon>home</mat-icon>
+      <span class="menucolor">Dashboard</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/employee/registerSainiks/" routerLinkActive="router-link-active">
+      <mat-icon>person</mat-icon>
+      <span class="menucolor" >Register Sainiks</span>
+    </button>
+ 
+    <mat-divider></mat-divider>
+   
+  </mat-sidenav>
+
+  <!-- main-layout.component.html or similar -->
+  <mat-sidenav-content>
+    <div class="main-container">
+      <mat-toolbar>
+        <button
+          mat-icon-button
+          aria-label="Example icon button with a menu icon"
+          (click)="toggleSidebar = !toggleSidebar"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <app-breadcrumb></app-breadcrumb>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

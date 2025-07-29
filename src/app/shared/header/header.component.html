@@ -1,0 +1,240 @@
+<mat-toolbar class="header-toolbar">
+  <span class="logo-section">
+    <img class="footer-img" src="./assets/images/nic_logo.png" alt="NIC Logo" />
+    <span class="toolbar-title mobile-hidden">Rajya Sainik Board</span>
+  </span>
+  <span class="toolbar-actions" *ngIf="!isAuthenticated">
+    <img src="./assets/images/user.jpg" alt="User Image" class="user-image" />
+    <div class="modal-actions"></div>
+    <div class="btn btn-success" routerLink="login">Sign In</div>
+    <div class="btn btn-primary">Sign Up</div>
+  </span>
+  <span class="toolbar-actions" *ngIf="isAuthenticated">
+    <div class="nav-link mobile-hidden">
+      Welcome, {{ FirstName }} {{ LastName }}
+    </div>
+    <img src="./assets/images/user.jpg" alt="User Image" class="user-image" />
+    <span class="spacer"></span>
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#profileModal"
+      >
+        Account
+      </button>
+    </div>
+  </span>
+</mat-toolbar>
+
+<!-- /* Modal*/ -->
+
+<div
+  class="modal fade"
+  id="resetPasswordModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabelreset">
+          Reset Password
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-wrapper">
+          <div class="auth-content">
+            <div class="card">
+              <form>
+                <div class="row align-items-center text-center">
+                  <div class="col-md-12">
+                    <div class="card-body">
+                      <img
+                        src="assets/images/user.jpg"
+                        alt="logo"
+                        class="avatar"
+                      />
+                      <h4 class="mb-3 f-w-400">Reset Password</h4>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"
+                          ><i class="feather icon-lock">Old Password</i></span
+                        >
+                        <input
+                          type="text"
+                          id="oldPassword"
+                          [(ngModel)]="oldpassword"
+                          name="oldPassword"
+                          required
+                          class="form-control"
+                          placeholder="Old Password"
+                          aria-label="OldPassword"
+                          aria-describedby="basic-addon1"
+                        />
+                      </div>
+                      <div class="input-group mb-4">
+                        <span class="input-group-text" id="basic-addon3"
+                          ><i class="feather icon-lock">New Password</i></span
+                        >
+                        <input
+                          type="password"
+                          id="newpassword"
+                          [(ngModel)]="newpassword1"
+                          name="newpassword1"
+                          required
+                          class="form-control"
+                          placeholder="New Password"
+                          aria-label="newpassword"
+                          aria-describedby="basic-addon3"
+                        />
+                      </div>
+                      <div class="input-group mb-4">
+                        <span class="input-group-text" id="basic-addon3"
+                          ><i class="feather icon-lock"> New Password</i></span
+                        >
+                        <input
+                          type="password"
+                          id="newpassword2"
+                          [(ngModel)]="newpassword2"
+                          name="newpassword2"
+                          required
+                          class="form-control"
+                          placeholder=" Confirm New Password"
+                          aria-label="newpassword"
+                          aria-describedby="basic-addon3"
+                        />
+                      </div>
+                      <div class="form-group text-start mt-2">
+                        <div class="checkbox checkbox-primary d-inline">
+                          <input
+                            type="checkbox"
+                            name="checkbox-fill-1"
+                            id="checkbox-fill-a1"
+                            checked=""
+                          />
+                          <label for="checkbox-fill-a1" class="cr">
+                            Save credentials</label
+                          >
+                        </div>
+                      </div>
+                      <div class="d-grid">
+                        <button
+                          class="btn btn-block btn-primary mb-4"
+                          data-bs-dismiss="modal"
+                          (click)="
+                            resetPassword(
+                              oldpassword,
+                              newpassword1,
+                              newpassword2
+                            )
+                          "
+                        >
+                          Reset Password
+                        </button>
+                      </div>
+                      <p class="mb-2 text-muted">
+                        Forgot password?
+                        <a href="javascriprt:" class="f-w-400">Reset</a>
+                      </p>
+                      <p class="mb-0 text-muted">
+                        Don’t have an account?
+                        <button
+                          type="button"
+                          class="btn btn-link"
+                          data-bs-toggle="modal"
+                          data-bs-target="#signUpModal"
+                        >
+                          Sign Up
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Account Modal -->
+<div
+  class="modal fade"
+  id="profileModal"
+  tabindex="-1"
+  aria-labelledby="profileModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          <img
+            src="./assets/images/user.jpg"
+            alt="User Profile Picture"
+            class="rounded-circle"
+            width="150"
+          />
+          <div class="mt-3">
+            <h4>{{ FirstName }} {{ LastName }}</h4>
+            <p class="text-secondary mb-1" *ngIf="Role == 1">Admin</p>
+            <p class="text-secondary mb-1" *ngIf="Role == 2">Manager</p>
+            <p class="text-secondary mb-1" *ngIf="Role == 3">Employee</p>
+            <button class="btn btn-outline-primary">Edit Profile</button>
+          </div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+          <strong>Email:</strong>
+          <span>{{ UserName }}</span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <strong>Phone:</strong>
+          <span>(123) 456-7890</span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <strong>Address:</strong>
+          <span>1234 Street, City, Country</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-toggle="modal"
+          data-bs-target="#resetPasswordModal"
+        >
+          Reset Password
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          (click)="logout()"
+          data-bs-dismiss="modal"
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
