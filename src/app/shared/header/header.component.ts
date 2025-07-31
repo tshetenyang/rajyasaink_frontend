@@ -10,7 +10,7 @@ import { CommonService } from '../shared_service/common.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MaterialModule, CommonModule, RouterOutlet, RouterModule, FormsModule],
+  imports: [MaterialModule, CommonModule, RouterModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
